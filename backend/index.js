@@ -3,6 +3,9 @@ import { PORT, mongodbURL } from "./config.js";
 import mongoose from "mongoose";
 import { Book } from "./models/booksModel.js";
 import booksRouter from "./routes/booksRoute.js";
+
+import cors from 'cors';
+
 const app = express();
 
 // MIDDLEWARES
@@ -12,6 +15,10 @@ app.use(express.json());
 
 // Middleware for the books route
 app.use('/books', booksRouter)
+
+// Middleware for handling CORS policy
+
+app.use(cors());
 // ROUTES
 
 // default route
