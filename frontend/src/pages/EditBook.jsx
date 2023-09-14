@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BackButton from "../components/BackButton";
+import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -9,8 +10,27 @@ const EditBook = () => {
   const [author, setAuthor] = useState("");
   const [publishYear, setPublishYear] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const { id } = useParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get(`http://localhost:5555/books/${id}`)
+      .then((res) => {
+        console.log("Success on retrieving book");
+        console.log(res.data);
+        setTitle(res.data.title);
+        setAuthor(res.data.author);
+        setPublishYear(res.data.publishYear);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+        alert("An Error occurred");
+        console.log(err);
+      });
+  }, []);
 
   const handleEditBook = () => {
     const data = {
@@ -21,7 +41,7 @@ const EditBook = () => {
 
     setLoading(true);
     axios
-      .post("http://localhost:5555/books", data)
+      .put(`http://localhost:5555/books/${id}`, data)
       .then(() => {
         setLoading(false);
         navigate("/");
@@ -56,7 +76,7 @@ const EditBook = () => {
             className="border-2 border-gray-500 px-4 py-2 w-full"
             type="text"
             placeholder="Author name..."
-            value={author.name}
+            value={author}
             onChange={(e) => setAuthor(e.target.value)}
           />
         </div>
@@ -72,8 +92,8 @@ const EditBook = () => {
         </div>
 
         <div className="my-4">
-          <button className="p-2 bg-sky-300 " onClick={handleEditBook}>
-            Create Book
+          <button className="p-2 bg-sky-300 w-full" onClick={handleEditBook}>
+            Save Book
           </button>
         </div>
       </div>
