@@ -3,3 +3,6 @@
 /bookstore.code-workspace
 /backend/node_modules
 *.code-workspace
+*/node-modules
+**/node_modules
+/bookstore.code-workspace
