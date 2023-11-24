@@ -4,6 +4,9 @@ import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+
+
+const BACKEND_URL = "https://bookstore-backend-9baw.onrender.com/books"
 const CreateBook = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -21,7 +24,7 @@ const CreateBook = () => {
 
     setLoading(true);
     axios
-      .post("http://localhost:5555/books", data)
+      .post(BACKEND_URL, data)
       .then(() => {
         setLoading(false);
         navigate("/");
