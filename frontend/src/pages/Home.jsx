@@ -8,6 +8,7 @@ import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
 import BooksTable from "../components/Home/BooksTable";
 import BooksCard from "../components/Home/BooksCard";
 
+const BACKEND_URL = "https://bookstore-backend-9baw.onrender.com/books"
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -17,7 +18,7 @@ const Home = () => {
     setLoading(true);
     console.log("fetchin db");
     axios
-      .get("http://localhost:5555/books")
+      .get(BACKEND_URL)
       .then((response) => {
         console.log("================Response Here============");
         console.log(response);
