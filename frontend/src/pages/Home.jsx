@@ -8,7 +8,7 @@ import { MdOutlineAddBox, MdOutlineDelete } from "react-icons/md";
 import BooksTable from "../components/Home/BooksTable";
 import BooksCard from "../components/Home/BooksCard";
 
-const BACKEND_URL = "https://bookstore-backend-9baw.onrender.com/books"
+const BACKEND_URL = "https://bookstore-backend-9baw.onrender.com/books";
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
