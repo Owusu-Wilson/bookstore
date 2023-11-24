@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+const BACKEND_URL = "https://bookstore-backend-9baw.onrender.com/books"
 const EditBook = () => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -16,7 +16,7 @@ const EditBook = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5555/books/${id}`)
+      .get(`${BACKEND_URL}/${id}`)
       .then((res) => {
         console.log("Success on retrieving book");
         console.log(res.data);
