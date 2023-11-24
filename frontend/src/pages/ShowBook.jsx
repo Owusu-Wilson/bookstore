@@ -3,6 +3,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
+
+const BACKEND_URL = "https://bookstore-backend-9baw.onrender.com/books"
 const ShowBook = () => {
   const [book, setBook] = useState({});
   const [loading, setLoading] = useState(false);
@@ -12,7 +14,7 @@ const ShowBook = () => {
     console.log(id);
     setLoading(true);
     axios
-      .get(`http://localhost:5555/books/${id}`)
+      .get(`${BACKEND_URL}/${id}`)
       .then((res) => {
         console.log(`Response for ${id}`);
         console.log(res);
