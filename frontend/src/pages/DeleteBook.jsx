@@ -4,6 +4,8 @@ import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
+
+const BACKEND_URL = "https://bookstore-backend-9baw.onrender.com/books"
 const DeleteBook = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -11,7 +13,7 @@ const DeleteBook = () => {
   const handleDeleteBook = () => {
     setLoading(true);
     axios
-      .delete(`http://localhost:5555/books/${id}`)
+      .delete(`${BACKEND_URL}/${id}`)
       .then(() => {
         setLoading(false);
         navigate("/");
