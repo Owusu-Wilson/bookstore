@@ -41,7 +41,7 @@ const EditBook = () => {
 
     setLoading(true);
     axios
-      .put(`http://localhost:5555/books/${id}`, data)
+      .put(`${BACKEND_URL}/${id}`, data)
       .then(() => {
         setLoading(false);
         navigate("/");
@@ -93,7 +93,7 @@ const EditBook = () => {
 
         <div className="my-4">
           <button className="p-2 bg-sky-300 w-full" onClick={handleEditBook}>
-            Save Book
+            Update Book
           </button>
         </div>
       </div>
